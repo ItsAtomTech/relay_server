@@ -25,11 +25,10 @@ def run_command():
 
     request_id = str(uuid.uuid4())
     pending_requests[request_id] = None
-
-    socketio.emit('execute_command', {
-        "request_id": request_id,
-        "command": command
-    }, room=channel)
+    
+    data["request_id"] = request_id
+    
+    socketio.emit('execute_command', data, room=channel)
 
     # Wait up to 10 seconds for device response
     timeout = 10
