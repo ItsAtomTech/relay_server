@@ -42,6 +42,10 @@ def run_command():
     return jsonify({"error": "Timeout waiting for device"}), 504
 
 
+@app.route('/test_connect', methods=['POST','GET'])
+def run_test():
+    return jsonify({"success": "Service is Online"}), 200
+
 @socketio.on('authenticate')
 def handle_auth(data):
     token = data.get('token')
